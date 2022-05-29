@@ -1,0 +1,61 @@
+#messages__button {
+    &.active {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 100px;
+            background-color: #ff0000;
+        }
+    }
+}
+
+.messages_list {
+    max-height: 600px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .message_each {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px 5px 0 0;
+
+        &.active {
+          background-color: lighten($color: $color__background, $amount: 10);
+        }
+
+        &:hover i {
+            cursor: default;
+            color: unset;
+        }
+
+        .object {
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 12px;
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .message_footer {
+            text-align: right;
+            font-size: 12px;
+            color: rgba($color: #fff, $alpha: 0.4);
+        }
+    }
+}

@@ -1,0 +1,74 @@
+// sass --watch ./webroot/css/scss/style.scss ./webroot/css/style.css
+
+@import 'includes/variables';
+@import 'includes/flash';
+@import 'includes/paginator';
+@import 'includes/table';
+@import 'includes/header';
+@import 'includes/notifications';
+@import 'includes/listings';
+@import 'includes/messages';
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  color: $color__font;
+}
+
+html {
+  background-color: $color__background;
+}
+
+main {
+  padding-bottom: 20px;
+}
+
+a {
+  color: $color__primary;
+
+  &:hover {
+    color: $color__secondary;
+
+    i {
+      color: $color__secondary;
+    }
+  }
+}
+
+.button, button {
+  background-color: $color__primary;
+  border-color: $color__primary;
+
+  &:hover {
+    background-color: $color__secondary;
+    border-color: $color__secondary;
+  }
+}
+
+.content {
+  padding: 2rem;
+  background-color: lighten($color: $color__background, $amount: 7);
+  border-radius: 0.4rem;
+  /* Thanks Stripe */
+  box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
+      0 3px 6px 0 rgba(0, 0, 0, 0.07);
+}
+
+.hidden {
+  display: none;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.input.checkbox label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+
+  input {
+    margin: 0 10px;
+  }
+}

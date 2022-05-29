@@ -1,0 +1,35 @@
+.listings {
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid #e6e6e6;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: lighten($color: $color__background, $amount: 3);
+    }
+
+    .deadline {
+      &.outdated {
+        color: #ff0000;
+      }
+    }
+
+    .element_input, .deadline_input {
+      max-width: 300px;
+    }
+  }
+
+  a {
+    i {
+      color: $color__primary;
+      cursor: pointer;
+
+      &:hover {
+        color: $color__secondary;
+      }
+    }
+  }
+}

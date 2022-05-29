@@ -1,0 +1,5 @@
+table {
+  tr:nth-child(even) {
+    background-color: lighten($color: $color__background, $amount: 3);
+  }
+}

@@ -1,0 +1,304 @@
+@charset "UTF-8";
+.message {
+  padding: 1rem;
+  background: #eff8ff;
+  color: #2779bd;
+  border-color: #6cb2eb;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+.message.hidden {
+  display: none;
+}
+.message.success {
+  background: #dff0d8;
+  color: #3c763d;
+  border-color: #d6e9c6;
+}
+.message.warning {
+  background: #fcf8e3;
+  color: #8a6d3b;
+  border-color: #faebcc;
+}
+.message.error {
+  background: #f2dede;
+  color: #a94442;
+  border-color: #ebccd1;
+}
+
+.paginator {
+  text-align: right;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.pagination li {
+  margin: 0 0.5rem;
+}
+
+.prev.disabled a,
+.next.disabled a {
+  cursor: not-allowed;
+  color: #606c76;
+}
+
+.asc:after {
+  content: " ↓";
+}
+
+.desc:after {
+  content: " ↑";
+}
+
+table tr:nth-child(even) {
+  background-color: #060552;
+}
+
+.top-nav {
+  width: 100%;
+  max-width: 112rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-nav .top-nav-title {
+  font-size: 5rem;
+}
+.top-nav .top-nav-title span {
+  font-weight: bold;
+  font-size: 4rem;
+}
+.top-nav .top-nav-links a {
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  border: 1px solid white;
+  transition: all 0.3s ease-in-out;
+}
+.top-nav .top-nav-links a:hover {
+  background-color: white;
+  color: #050444;
+}
+.top-nav .top-nav-links a:hover i {
+  color: #050444;
+}
+.top-nav .top-nav-links a i {
+  color: #0de19a;
+  transition: all 0.3s ease-in-out;
+}
+
+#notifications {
+  min-width: 50%;
+  z-index: 100;
+  border-radius: 4px;
+  background-color: #03032c;
+}
+#notifications::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#notifications .notifications__header {
+  display: flex;
+  justify-content: space-between;
+}
+#notifications .notifications__header form button {
+  background-color: unset;
+  padding: 0;
+  border: none;
+}
+#notifications ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#notifications ul li {
+  padding: 1rem;
+  border-bottom: 1px solid white;
+  display: flex;
+  flex-direction: column;
+}
+#notifications ul li.seen {
+  background-color: #060557;
+}
+#notifications ul li.seen p {
+  text-decoration: line-through;
+}
+#notifications ul li:last-child {
+  border-bottom: none;
+}
+#notifications ul li .notification__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 5px;
+  margin-top: 1rem;
+}
+#notifications ul li .notification__actions a {
+  cursor: pointer;
+  padding: 2px 10px;
+  border: none;
+}
+#notifications ul li .notification__actions span {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#notifications__trigger.active {
+  position: relative;
+}
+#notifications__trigger.active::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  background-color: #ff0000;
+}
+
+.listings li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid #e6e6e6;
+  transition: all 0.2s ease-in-out;
+}
+.listings li:hover {
+  background-color: #060552;
+}
+.listings li .deadline.outdated {
+  color: #ff0000;
+}
+.listings li .element_input, .listings li .deadline_input {
+  max-width: 300px;
+}
+.listings a i {
+  color: #0de19a;
+  cursor: pointer;
+}
+.listings a i:hover {
+  color: #0ab179;
+}
+
+#messages__button.active {
+  position: relative;
+}
+#messages__button.active::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  background-color: #ff0000;
+}
+
+.messages_list {
+  max-height: 600px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.messages_list .message_each {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px 5px 0 0;
+}
+.messages_list .message_each.active {
+  background-color: #090774;
+}
+.messages_list .message_each:hover i {
+  cursor: default;
+  color: unset;
+}
+.messages_list .message_each .object {
+  font-weight: bold;
+}
+.messages_list .message_each p {
+  font-size: 12px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.messages_list .message_each .message_footer {
+  text-align: right;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+html {
+  background-color: #050444;
+}
+
+main {
+  padding-bottom: 20px;
+}
+
+a {
+  color: #0de19a;
+}
+a:hover {
+  color: #0ab179;
+}
+a:hover i {
+  color: #0ab179;
+}
+
+.button, button {
+  background-color: #0de19a;
+  border-color: #0de19a;
+}
+.button:hover, button:hover {
+  background-color: #0ab179;
+  border-color: #0ab179;
+}
+
+.content {
+  padding: 2rem;
+  background-color: #070666;
+  border-radius: 0.4rem;
+  /* Thanks Stripe */
+  box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
+}
+
+.hidden {
+  display: none;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.input.checkbox label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+}
+.input.checkbox label input {
+  margin: 0 10px;
+}
+
+/*# sourceMappingURL=style.css.map */
