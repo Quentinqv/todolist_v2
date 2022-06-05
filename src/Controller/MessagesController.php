@@ -66,7 +66,7 @@ class MessagesController extends AppController
             ->contain(['ReceiversUsers', 'Users']);
 
         // Save la nouvelle date "readby" dans la bdd
-        if ($message->readby == null) {
+        if ($message->readby == null && $message->receiver_id == $this->request->getAttribute('identity')->id) {
             $message->readby = date('Y-m-d H:i:s');
             $this->Messages->save($message);
         }
@@ -94,7 +94,8 @@ class MessagesController extends AppController
             $this->Flash->error(__('The message could not be saved. Please, try again.'));
         }
 
-        $users = $this->fetchTable('Users')->find("all");
+        $users = $this->fetchTable('Users')->find("all")
+        ->where(['Users.id !=' => $this->request->getAttribute('identity')->id]);
         $usersList = [];
 
         foreach ($users->toArray() as $key => $value) {

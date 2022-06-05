@@ -146,52 +146,23 @@ class ListingsController extends AppController
      */
     public function copy($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        // Récupère l'id de la liste à copier
-        $listing = $this->Listings->get($id);
-        $this->Authorization->authorize($listing);
-        $newListing = $this->Listings->newEmptyEntity();
-        $newListing->name = $listing->name . ' - Copy';
-        $newListing->private = $listing->private;
-        $newListing->user_id = $this->request->getAttribute('identity')->id;
-        $newListing->style = $listing->style;
-        $newListing->parent_id = $listing->id;
-
-        // On récupère tous les items de la liste à copier
-        $items = $this->fetchTable('Items')->find('all')->where(['list_id' => $id]);
-
-        // On enregistre la liste
-        if ($this->Listings->save($newListing)) {
-
-            // On défini les id sur les items à copier
-            foreach ($items as $key => $value) {
-                $newItem = $this->fetchTable("Items")->newEmptyEntity();
-                $newItem->element = $value->element;
-                $newItem->completed = false;
-                $newItem->list_id = $newListing->id;
-                $newItem->deadline = $value->deadline;
-
-                if (!$this->fetchTable("Items")->save($newItem)) {
-                    $this->Flash->error(__('An item has not been copied. Please, try again.'));
-                    $error = true;
-                }
-            }
-
-            if (!isset($error)) {
-                $this->Flash->success(__('The listing has been copied.'));
-
-                // Send notifications to $listing->user_id
-                $notification = $this->fetchTable('Notifications')->newEmptyEntity();
-                $notification->user_id = $listing->user_id;
-                $notification->content = 'Your list "' . $listing->name . '" has been copied.';
-                $this->fetchTable('Notifications')->save($notification);
-
-                return $this->redirect(['action' => 'view', $newListing->id]);
-            }
-        } else {
-            $this->Flash->error(__('The listing could not be saved. Please, try again.'));
+        if (empty($id)) {
+            return $this->redirect(['action' => 'index']);
         }
 
-        return $this->redirect(['action' => 'index']);
+        $list = $this->Listings->newEntity( $this->Listings->get($id,[
+            'contain' => ['ChildListings']])->toArray() );
+        // Authorization sur $list
+        $this->Authorization->authorize($list);
+        $list->setNew(true);
+        $list->set(['user_id'=>$this->request->getAttribute('identity')->id]);
+        $list->set(['parent_id'=>$id]);
+        $list->set(['name'=>$list->name.' - Copy']);
+
+        if ($this->Listings->save($list)) {
+            $this->Flash->success(__('The listing has been copied and saved.'));
+            return $this->redirect(['action' => 'index']);
+        }
+        $this->Flash->error(__('The listing could not be copied and saved. Please, try again.')); 
     }
 }

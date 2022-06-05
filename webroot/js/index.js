@@ -263,7 +263,6 @@ window.onload = function () {
     seen_trigger.forEach(function (element) {
         element.addEventListener("click", function (e) {
             e.preventDefault();
-            // AJAX /notifications/seen
             seenNotification(this.parentNode.parentNode);
         });
     });
